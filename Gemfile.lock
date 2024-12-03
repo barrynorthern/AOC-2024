@@ -20,6 +20,7 @@ GEM
     parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
+    parslet (2.0.0)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -58,6 +59,7 @@ DEPENDENCIES
   dotenv
   minitest
   minitest-reporters
+  parslet
   pry-byebug
   rake
   rubocop
