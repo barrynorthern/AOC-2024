@@ -1,7 +1,9 @@
 # Advent of Code 2024
 
-This is a ruby repository. Ensure the latest version of Ruby is in your path to run the solutions below.
+### test
 
-## Days
+bundle exec rake
 
-[Day 1](1/README.md)
+### run
+
+ruby <path_to_solution>
