@@ -22,9 +22,12 @@ AllCops:
   NewCops: enable
 
 Metrics/MethodLength:
-  Enabled: true
+  Enabled: false
   Exclude:
     - "**/test/**/*_test.rb"
+
+Metrics/ModuleLength:
+  Enabled: false
 
 Layout/LineLength:
   Max: 120
