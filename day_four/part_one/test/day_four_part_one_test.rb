@@ -90,10 +90,4 @@ class DayFourPartOneTest < Minitest::Test
 
     assert_equal(18, result)
   end
-
-  #   def test_can_return_the_correct_result
-  #     result = DayOne::PartOne.run(data)
-
-  #     assert_equal(11, result)
-  #   end
 end
