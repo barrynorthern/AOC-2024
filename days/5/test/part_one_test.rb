@@ -4,7 +4,7 @@ require_relative '../../../test_helper'
 require_relative '../lib/part_one'
 
 class DayFivePartOneTest < Minitest::Test
-  def data
+  def self.data
     <<~DATA
       47|53
       97|13
@@ -38,7 +38,7 @@ class DayFivePartOneTest < Minitest::Test
   end
 
   def test_process_data
-    rules, updates = DayFive::PartOne.process_data(data)
+    rules, updates = DayFive::PartOne.process_data(DayFivePartOneTest.data)
 
     assert_equal([
                    [47, 53],
@@ -75,7 +75,7 @@ class DayFivePartOneTest < Minitest::Test
   end
 
   def test_update_valid?
-    rules, updates = DayFive::PartOne.process_data(data)
+    rules, updates = DayFive::PartOne.process_data(DayFivePartOneTest.data)
     test_cases = {
       updates[0] => true,
       updates[1] => true,
@@ -92,7 +92,7 @@ class DayFivePartOneTest < Minitest::Test
   end
 
   def test_get_middle_value
-    _, updates = DayFive::PartOne.process_data(data)
+    _, updates = DayFive::PartOne.process_data(DayFivePartOneTest.data)
     test_cases = {
       updates[0] => 61,
       updates[1] => 53,
@@ -109,7 +109,7 @@ class DayFivePartOneTest < Minitest::Test
   end
 
   def test_get_sum_of_valid_middle_updates
-    rules, updates = DayFive::PartOne.process_data(data)
+    rules, updates = DayFive::PartOne.process_data(DayFivePartOneTest.data)
     result = DayFive::PartOne.get_sum_of_valid_middle_updates(rules, updates)
 
     assert_equal(143, result)
