@@ -6,7 +6,7 @@ require_relative '../lib/part_one'
 # require_relative '../lib/map'#
 
 class DaySixPartOneTest < Minitest::Test
-  def data
+  def self.data
     <<~DATA
       ....#.....
       .........#
@@ -22,7 +22,7 @@ class DaySixPartOneTest < Minitest::Test
   end
 
   def test_run
-    result = DaySix::PartOne.run(data)
+    result = DaySix::PartOne.run(DaySixPartOneTest.data)
 
     assert_equal(41, result)
   end

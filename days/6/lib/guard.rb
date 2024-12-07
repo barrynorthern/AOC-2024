@@ -22,11 +22,15 @@ module DaySix
     }.freeze
 
     def initialize(position, char)
-      @position = position
+      @position = position.clone
       @char = char
     end
 
     attr_reader :position, :char
+
+    def clone
+      Guard.new(@position, @char)
+    end
 
     def x
       @position.x

@@ -6,6 +6,10 @@ class Vector2d
     @y = y
   end
 
+  def clone
+    Vector2d.new(@x, @y)
+  end
+
   def add(vector)
     Vector2d.new(@x + vector.x, @y + vector.y)
   end

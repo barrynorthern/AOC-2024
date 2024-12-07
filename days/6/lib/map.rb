@@ -24,8 +24,16 @@ module DaySix
       nil
     end
 
+    def width
+      @grid[0].size
+    end
+
+    def height
+      @grid.size
+    end
+
     def traverse(guard)
-      @visits = Array.new(@grid.size) { Array.new(@grid[0].size) { 0 } }
+      @visits = Array.new(height) { Array.new(width) { 0 } }
       # loop while guard is in grid and hasn't already travelled across
       # a given point in the same direction because this would means she's
       # stuck in a loop, and she won't go anywhere new, so we're done.
@@ -36,15 +44,22 @@ module DaySix
       @visits.flatten.count(&:positive?)
     end
 
-    private
+    def add_obstacle(position)
+      return false if obstacle?(position)
+      return false unless inside?(position)
+
+      @grid[position.y][position.x] = '#'
+    end
 
     def clear_position(position)
       @grid[position.y][position.x] = '.'
     end
 
     def inside?(position)
-      position.x >= 0 && position.y >= 0 && position.y < @grid.size && position.x < @grid[0].size
+      position.x >= 0 && position.y >= 0 && position.y < height && position.x < width
     end
+
+    private
 
     def obstacle?(position)
       inside?(position) && @grid[position.y][position.x] == '#'
