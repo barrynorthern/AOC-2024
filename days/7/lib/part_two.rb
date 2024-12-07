@@ -8,15 +8,11 @@ require_relative 'part_one'
 
 module DaySeven
   module PartTwo
-    def self.run(_input_data)
-      0
-    end
-
     # Run the program and output the result
     if __FILE__ == $PROGRAM_NAME
       begin
-        input_data = Libs::Fetcher.fetch_data(PartOne.url)
-        result = run(input_data)
+        data = Libs::Fetcher.fetch_data(PartOne.url)
+        result = PartOne.sum_of_valid_answers(['+', '*', '||'], PartOne.process_data(data))
         puts "Result: #{result}"
       rescue StandardError => e
         puts "An error occurred: #{e.message}"

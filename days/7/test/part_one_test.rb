@@ -4,7 +4,7 @@ require_relative '../../../test_helper'
 require_relative '../lib/part_one'
 
 class DaySevenPartOneTest < Minitest::Test
-  def data
+  def self.data
     <<~DATA
       190: 10 19
       3267: 81 40 27
@@ -18,8 +18,8 @@ class DaySevenPartOneTest < Minitest::Test
     DATA
   end
 
-  def test_something
-    equations = DaySeven::PartOne.process_data(data)
+  def test_process_data
+    equations = DaySeven::PartOne.process_data(DaySevenPartOneTest.data)
 
     assert_equal([
                    [190, [10, 19]],
@@ -48,8 +48,8 @@ class DaySevenPartOneTest < Minitest::Test
   end
 
   def test_sum_of_valid_answers
-    equations = DaySeven::PartOne.process_data(data)
-    result = DaySeven::PartOne.sum_of_valid_answers(equations)
+    equations = DaySeven::PartOne.process_data(DaySevenPartOneTest.data)
+    result = DaySeven::PartOne.sum_of_valid_answers(['+', '*'], equations)
 
     assert_equal(3749, result)
   end
