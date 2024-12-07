@@ -34,3 +34,6 @@ Metrics/AbcSize:
 
 Layout/LineLength:
   Max: 120
+
+Naming/MethodParameterName:
+  Enabled: false
