@@ -18,6 +18,10 @@ class Vector2d
     Vector2d.new(@x - vector.x, @y - vector.y)
   end
 
+  def negate
+    Vector2d.new(-@x, -@y)
+  end
+
   def translate(vector)
     @x += vector.x
     @y += vector.y

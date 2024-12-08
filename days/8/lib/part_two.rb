@@ -8,15 +8,16 @@ require_relative 'part_one'
 
 module DayEight
   module PartTwo
-    def self.run(_input_data)
-      0
+    def self.run(map)
+      map.find_antinodes(resonant: true).length
     end
 
     # Run the program and output the result
     if __FILE__ == $PROGRAM_NAME
       begin
         input_data = Libs::Fetcher.fetch_data(PartOne.url)
-        result = run(input_data)
+        map = PartOne.process_data(input_data)
+        result = run(map)
         puts "Result: #{result}"
       rescue StandardError => e
         puts "An error occurred: #{e.message}"

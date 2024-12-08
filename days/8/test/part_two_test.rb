@@ -4,14 +4,10 @@ require_relative '../../../test_helper'
 require_relative '../lib/part_two'
 
 class DayEightPartTwoTest < Minitest::Test
-  def data
-    <<~DATA
-      XXX
-    DATA
-  end
+  def test_run
+    map = DayEight::PartOne.process_data(DayEightPartOneTest.data)
+    num_antinodes = DayEight::PartTwo.run(map)
 
-  #   def test_something
-  #     result = DayTemplate::PartOne.something(data)
-  #     assert_equal("foo", result)
-  #   end
+    assert_equal(34, num_antinodes)
+  end
 end

@@ -26,15 +26,15 @@ module DayEight
             char = lines[y][x]
             next if char == '.'
 
-            @nodes[char] << to_index(x, y)
+            @nodes[char] << to_index(Vector2d.new(x, y))
           end
         end
       end
 
       attr_reader :nodes
 
-      def to_index(x, y)
-        (y * @width) + x
+      def to_index(vector)
+        (vector.y * @width) + vector.x
       end
 
       def to_coord(index)
@@ -42,25 +42,48 @@ module DayEight
         Vector2d.new(x, y)
       end
 
-      def out_of_bounds?(x, y)
-        x.negative? || x >= @width || y.negative? || y >= @height
+      def out_of_bounds?(vector)
+        vector.x.negative? || vector.x >= @width || vector.y.negative? || vector.y >= @height
       end
 
-      def find_antinodes
-        antinodes = Set.new
+      def add_non_resonant_antinodes(p0, p1)
+        delta = p1.subtract(p0)
+        p0 = p0.subtract(delta)
+        p1 = p1.add(delta)
+        @antinodes << to_index(p0) unless out_of_bounds?(p0)
+        @antinodes << to_index(p1) unless out_of_bounds?(p1)
+      end
+
+      def add_resonant_antinodes(p0, p1)
+        add_antinodes = lambda do |point, delta|
+          loop do
+            point = point.add(delta)
+            break if out_of_bounds?(point)
+
+            @antinodes << to_index(point)
+          end
+        end
+
+        add_antinodes.call(p0, p1.subtract(p0))
+        add_antinodes.call(p1, p0.subtract(p1))
+      end
+
+      def find_antinodes(resonant: false)
+        @antinodes = Set.new
+
         @nodes.each_value do |value|
           value.combination(2).each do |pair|
             p0 = to_coord(pair[0])
             p1 = to_coord(pair[1])
             p0, p1 = p1, p0 if p0.x > p1.x
-            delta = p1.subtract(p0)
-            a0 = p0.subtract(delta)
-            a1 = p1.add(delta)
-            antinodes << to_index(a0.x, a0.y) unless out_of_bounds?(a0.x, a0.y)
-            antinodes << to_index(a1.x, a1.y) unless out_of_bounds?(a1.x, a1.y)
+            if resonant
+              add_resonant_antinodes(p0, p1)
+            else
+              add_non_resonant_antinodes(p0, p1)
+            end
           end
         end
-        antinodes
+        @antinodes
       end
     end
 
