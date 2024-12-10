@@ -31,10 +31,10 @@ module DayNine
 
       while i < j
         if blocks[i] == -1
-          # Move backward pointer until we find a number
+          # Move backward pointer until we find a valid block
           j -= 1 while i < j && blocks[j] == -1
 
-          # Swap characters if valid
+          # Swap blocks if valid
           blocks[i], blocks[j] = blocks[j], blocks[i] if i < j
         end
         # Move forward pointer
