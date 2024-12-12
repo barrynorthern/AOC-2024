@@ -66,6 +66,7 @@ DEPENDENCIES
   dotenv
   minitest
   minitest-reporters
+  parallel
   parslet
   pry-byebug
   rake
